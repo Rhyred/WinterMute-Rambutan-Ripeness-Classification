@@ -51,55 +51,56 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="app-shell min-h-screen text-slate-100">
       <HeroSection />
 
-      <main className="max-w-6xl mx-auto px-6 py-12">
-        {/* Upload Section */}
-        <section className="bg-white rounded-lg shadow-md p-8 mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Upload Rambutan Image</h2>
+      <main className="mx-auto -mt-10 max-w-6xl px-4 pb-12 sm:px-6 lg:px-8">
+        <section className="glass-panel animate-fade-in p-5 sm:p-8">
+          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="section-kicker">Digital Image Input</p>
+              <h2 className="text-2xl font-bold text-white sm:text-3xl">Unggah citra untuk dianalisis</h2>
+            </div>
+            <p className="max-w-xl text-sm leading-6 text-slate-300">
+              Sistem membaca citra rambutan, mengekstraksi kanal warna HSV, lalu mengklasifikasikan tingkat
+              kematangan menggunakan model K-NN.
+            </p>
+          </div>
           <UploadZone onFileSelected={handleFileSelected} isLoading={isLoading} />
         </section>
 
-        {/* Loading State */}
         {isLoading && (
-          <div className="text-center py-12">
-            <div className="inline-block">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-rambutan-600"></div>
+          <div className="my-8 rounded-2xl border border-cyan-400/30 bg-cyan-950/45 px-6 py-8 text-center shadow-2xl shadow-cyan-950/30 backdrop-blur">
+            <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-slate-950 shadow-sm ring-1 ring-cyan-300/30">
+              <div className="h-8 w-8 animate-spin rounded-full border-4 border-cyan-400/20 border-t-cyan-300"></div>
             </div>
-            <p className="text-gray-600 font-semibold mt-4">Processing image...</p>
+            <p className="mt-4 font-semibold text-white">Memproses citra...</p>
+            <p className="mt-1 text-sm text-cyan-100/75">Segmentasi warna dan ekstraksi HSV sedang berjalan.</p>
           </div>
         )}
 
-        {/* Error State */}
         {error && (
-          <div className="bg-red-50 border border-red-300 rounded-lg p-6 mb-8 text-center">
-            <p className="text-red-800 font-semibold">❌ Error: {error}</p>
-            <p className="text-red-600 text-sm mt-2">
-              Make sure the FastAPI server is running on http://localhost:8000
+          <div className="my-8 rounded-2xl border border-red-400/30 bg-red-950/50 px-6 py-5 shadow-sm backdrop-blur">
+            <p className="font-semibold text-red-100">Gagal memproses gambar: {error}</p>
+            <p className="mt-2 text-sm text-red-200/80">
+              Pastikan server FastAPI berjalan di http://localhost:8000 atau atur VITE_API_URL dengan benar.
             </p>
           </div>
         )}
 
-        {/* Results Section */}
         {result && originalImage && (
-          <>
+          <section className="animate-fade-in">
             <ImagePreview originalImage={originalImage} processedImage={result.processedImageBase64} />
             <ResultCard result={result} />
-          </>
+          </section>
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-100 border-t border-gray-300 py-8 mt-16">
-        <div className="max-w-6xl mx-auto px-6 text-center text-gray-600 text-sm">
-          <p className="font-semibold">Team Wintermute</p>
-          <p className="mt-2">
-            Classification of Rambutan Fruit Ripeness using HSV Color Feature Extraction and K-Nearest Neighbor
-            (K-NN)
-          </p>
-          <p className="mt-4 text-xs opacity-75">
-            University Final Project • Built with React + TypeScript + Vite + TailwindCSS
+      <footer className="border-t border-white/10 bg-slate-950/80 py-8 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
+          <p className="font-semibold text-white">Team Wintermute</p>
+          <p className="max-w-2xl md:text-right">
+            Classification of Rambutan Fruit Ripeness using HSV Color Feature Extraction and K-Nearest Neighbor.
           </p>
         </div>
       </footer>
