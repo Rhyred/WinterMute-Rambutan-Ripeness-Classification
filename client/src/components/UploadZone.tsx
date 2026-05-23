@@ -12,7 +12,18 @@ interface UploadZoneProps {
 
 export const UploadZone: React.FC<UploadZoneProps> = ({ onFileSelected, isLoading = false }) => {
   const [isDragActive, setIsDragActive] = useState(false);
+  const [fileError, setFileError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const selectFile = (file: File) => {
+    if (!file.type.startsWith('image/')) {
+      setFileError('File harus berupa gambar.');
+      return;
+    }
+
+    setFileError(null);
+    onFileSelected(file);
+  };
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -31,51 +42,55 @@ export const UploadZone: React.FC<UploadZoneProps> = ({ onFileSelected, isLoadin
 
     const files = e.dataTransfer.files;
     if (files && files[0]) {
-      const file = files[0];
-      if (file.type.startsWith('image/')) {
-        onFileSelected(file);
-      } else {
-        alert('Please drop an image file');
-      }
+      selectFile(files[0]);
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files && files[0]) {
-      onFileSelected(files[0]);
+      selectFile(files[0]);
     }
   };
 
   return (
-    <div
-      onDragEnter={handleDrag}
-      onDragLeave={handleDrag}
-      onDragOver={handleDrag}
-      onDrop={handleDrop}
-      className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-        isDragActive
-          ? 'border-rambutan-500 bg-rambutan-50'
-          : 'border-gray-300 bg-gray-50 hover:border-rambutan-400'
-      } ${isLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
-    >
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="image/*"
-        onChange={handleChange}
-        className="hidden"
-        disabled={isLoading}
-      />
-      <button
-        onClick={() => fileInputRef.current?.click()}
-        disabled={isLoading}
-        className="text-rambutan-600 font-semibold hover:text-rambutan-700 disabled:opacity-50"
+    <div>
+      <div
+        onDragEnter={handleDrag}
+        onDragLeave={handleDrag}
+        onDragOver={handleDrag}
+        onDrop={handleDrop}
+        className={`upload-zone ${isDragActive ? 'upload-zone-active' : ''} ${
+          isLoading ? 'pointer-events-none opacity-60' : ''
+        }`}
       >
-        <div className="text-4xl mb-2">📸</div>
-        <p className="text-lg mb-2">Drag and drop your rambutan image here</p>
-        <p className="text-sm text-gray-600">or click to select a file</p>
-      </button>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          onChange={handleChange}
+          className="hidden"
+          disabled={isLoading}
+        />
+        <button
+          onClick={() => fileInputRef.current?.click()}
+          disabled={isLoading}
+          className="flex w-full flex-col items-center text-center"
+          type="button"
+        >
+          <span className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-cyan-400/15 text-3xl text-cyan-100 shadow-inner ring-1 ring-cyan-300/30">
+            ◈
+          </span>
+          <span className="text-xl font-bold text-white">Drop citra rambutan ke area ini</span>
+          <span className="mt-2 text-sm leading-6 text-slate-300">
+            format gambar umum didukung untuk analisis warna dan klasifikasi
+          </span>
+          <span className="mt-5 rounded-full bg-cyan-300 px-5 py-3 text-sm font-bold text-slate-950 shadow-lg shadow-cyan-500/25 transition hover:bg-emerald-300">
+            Pilih Citra
+          </span>
+        </button>
+      </div>
+      {fileError && <p className="mt-3 text-sm font-medium text-red-300">{fileError}</p>}
     </div>
   );
 };

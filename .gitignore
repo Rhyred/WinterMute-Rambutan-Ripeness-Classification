@@ -1,5 +1,6 @@
 # Server
 Api/.venv/
+Api/dataset/
 
 # Logs
 client/logs
