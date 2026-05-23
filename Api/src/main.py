@@ -35,14 +35,10 @@ app.add_middleware(
 MODEL = None
 SCALER = None
 
-# Class name mapping (customize as needed)
-CLASS_NAMES = {
-    0: "mentah",              # unripe (green)
-    1: "menuju_matang",       # approaching ripe (yellow-red)
-    2: "matang",              # ripe (red)
-    3: "menuju_busuk",        # approaching rotten (brown-red)
-    4: "busuk"                # rotten (dark brown)
-}
+# Valid class names returned by the trained K-NN model.
+# The model is fit on string labels directly (see train.py), so prediction
+# values are already class name strings — no integer lookup needed.
+VALID_CLASS_NAMES = {"mentah", "menuju_matang", "matang", "menuju_busuk", "busuk"}
 
 
 @app.on_event("startup")
@@ -112,9 +108,10 @@ async def predict(file: UploadFile = File(...)):
         # Scale features using the trained scaler
         features_scaled = SCALER.transform([[mean_h, mean_s, mean_v]])
 
-        # Predict using K-NN
+        # Predict using K-NN. The model was trained on string labels, so
+        # `prediction` is already the class name (e.g. "matang").
         prediction = MODEL.predict(features_scaled)[0]
-        class_name = CLASS_NAMES.get(int(prediction), "unknown")
+        class_name = str(prediction) if str(prediction) in VALID_CLASS_NAMES else "unknown"
 
         return {
             "class_name": class_name,
