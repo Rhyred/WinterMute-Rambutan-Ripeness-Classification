@@ -7,3 +7,4 @@ export { HeroSection } from './HeroSection';
 export { UploadZone } from './UploadZone';
 export { ImagePreview } from './ImagePreview';
 export { ResultCard } from './ResultCard';
+export { PipelineSteps } from './PipelineSteps';

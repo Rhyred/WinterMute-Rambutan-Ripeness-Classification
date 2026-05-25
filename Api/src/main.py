@@ -102,7 +102,7 @@ async def predict(file: UploadFile = File(...)):
         image_bytes = await file.read()
 
         # Process image and extract HSV features
-        features, processed_image_b64 = process_image_bytes(image_bytes)
+        features, processed_image_b64, pipeline_images = process_image_bytes(image_bytes)
         mean_h, mean_s, mean_v = features
 
         # Scale features using the trained scaler
@@ -120,7 +120,8 @@ async def predict(file: UploadFile = File(...)):
                 "saturation": float(mean_s),
                 "value": float(mean_v)
             },
-            "processed_image_base64": processed_image_b64
+            "processed_image_base64": processed_image_b64,
+            "pipeline_images": pipeline_images
         }
 
     except ValueError as e:
