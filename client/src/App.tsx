@@ -4,7 +4,7 @@
  */
 
 import { useState } from 'react';
-import { HeroSection, UploadZone, ImagePreview, ResultCard } from './components';
+import { HeroSection, UploadZone, ImagePreview, ResultCard, PipelineSteps } from './components';
 import { predictRipeness } from './api/client';
 import type { PredictionResult } from './types';
 import './App.css';
@@ -38,6 +38,7 @@ function App() {
         saturation: apiResponse.features.saturation,
         value: apiResponse.features.value,
         processedImageBase64: apiResponse.processed_image_base64,
+        pipelineImages: apiResponse.pipeline_images,
       };
 
       setResult(predictionResult);
@@ -70,12 +71,41 @@ function App() {
         </section>
 
         {isLoading && (
-          <div className="my-8 rounded-2xl border border-cyan-400/30 bg-cyan-950/45 px-6 py-8 text-center shadow-2xl shadow-cyan-950/30 backdrop-blur">
-            <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-slate-950 shadow-sm ring-1 ring-cyan-300/30">
-              <div className="h-8 w-8 animate-spin rounded-full border-4 border-cyan-400/20 border-t-cyan-300"></div>
+          <div className="my-8 animate-fade-in">
+            {/* Loading skeleton for pipeline */}
+            <div className="rounded-3xl bg-slate-900/60 p-5 ring-1 ring-white/10 sm:p-8">
+              <div className="mb-6">
+                <div className="skeleton h-4 w-20 mb-2"></div>
+                <div className="skeleton h-8 w-48"></div>
+              </div>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <div key={i} className="rounded-xl bg-slate-800/50 p-4 ring-1 ring-white/5">
+                    <div className="skeleton h-32 w-full mb-3"></div>
+                    <div className="skeleton h-4 w-24 mb-2"></div>
+                    <div className="skeleton h-3 w-full"></div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <p className="mt-4 font-semibold text-white">Memproses citra...</p>
-            <p className="mt-1 text-sm text-cyan-100/75">Segmentasi warna dan ekstraksi HSV sedang berjalan.</p>
+
+            {/* Processing indicator */}
+            <div className="mt-6 rounded-2xl border border-cyan-400/30 bg-cyan-950/45 px-6 py-8 text-center backdrop-blur animate-pulse-glow">
+              <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-950 shadow-lg ring-1 ring-cyan-300/30">
+                <div className="h-10 w-10 animate-spin rounded-full border-4 border-cyan-400/20 border-t-cyan-300"></div>
+              </div>
+              <p className="mt-5 text-lg font-semibold text-white">Memproses citra...</p>
+              <p className="mt-2 text-sm text-cyan-100/75">Menjalankan 6 tahap pipeline image processing</p>
+              <div className="mt-4 flex justify-center gap-1">
+                {[0, 1, 2].map((i) => (
+                  <div
+                    key={i}
+                    className="h-2 w-2 rounded-full bg-cyan-400 animate-bounce"
+                    style={{ animationDelay: `${i * 150}ms` }}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         )}
 
@@ -90,7 +120,8 @@ function App() {
 
         {result && originalImage && (
           <section className="animate-fade-in">
-            <ImagePreview originalImage={originalImage} processedImage={result.processedImageBase64} />
+            <ImagePreview originalImage={originalImage} />
+            <PipelineSteps images={result.pipelineImages} />
             <ResultCard result={result} />
           </section>
         )}

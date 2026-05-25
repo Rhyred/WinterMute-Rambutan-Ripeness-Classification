@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Rambutan body -->
+  <ellipse cx="50" cy="55" rx="28" ry="32" fill="#dc2626"/>
+  <ellipse cx="50" cy="55" rx="28" ry="32" fill="url(#grad1)"/>
+  
+  <!-- Gradient for depth -->
+  <defs>
+    <radialGradient id="grad1" cx="35%" cy="35%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Rambutan hairs/spines -->
+  <g stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" fill="none">
+    <!-- Top -->
+    <path d="M50 23 Q50 15 48 8" stroke="#22c55e"/>
+    <path d="M42 25 Q38 18 35 12" stroke="#22c55e"/>
+    <path d="M58 25 Q62 18 65 12" stroke="#22c55e"/>
+    <!-- Upper sides -->
+    <path d="M32 32 Q24 28 18 22"/>
+    <path d="M68 32 Q76 28 82 22"/>
+    <path d="M26 42 Q16 40 10 35"/>
+    <path d="M74 42 Q84 40 90 35"/>
+    <!-- Middle sides -->
+    <path d="M23 55 Q12 55 5 52"/>
+    <path d="M77 55 Q88 55 95 52"/>
+    <!-- Lower sides -->
+    <path d="M25 68 Q15 72 8 70"/>
+    <path d="M75 68 Q85 72 92 70"/>
+    <path d="M30 78 Q22 85 18 88"/>
+    <path d="M70 78 Q78 85 82 88"/>
+    <!-- Bottom -->
+    <path d="M40 85 Q38 92 36 97"/>
+    <path d="M60 85 Q62 92 64 97"/>
+    <path d="M50 87 Q50 94 50 99"/>
+  </g>
+  
+  <!-- Highlight -->
+  <ellipse cx="40" cy="45" rx="8" ry="10" fill="rgba(255,255,255,0.2)"/>
+</svg>
