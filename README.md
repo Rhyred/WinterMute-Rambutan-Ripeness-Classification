@@ -92,6 +92,8 @@ project_root/
    python src/main.py
    ```
    Server runs on `http://localhost:8000`
+   cd /home/rhyred/Wintermute/Api/src
+   uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
 ### Frontend Setup
 
@@ -110,6 +112,7 @@ project_root/
    npm run dev
    ```
    App runs on `http://localhost:5173`
+   npm run dev -- --host
 
 ## Features
 

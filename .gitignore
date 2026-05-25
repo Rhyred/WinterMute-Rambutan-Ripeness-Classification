@@ -1,7 +1,8 @@
 # Server
 Api/.venv/
 Api/dataset/
-
+Api/__pycache__/
+Api/.env
 # Logs
 client/logs
 client/*.log
