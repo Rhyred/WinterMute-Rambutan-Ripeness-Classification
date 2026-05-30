@@ -78,14 +78,14 @@ export const UploadZone: React.FC<UploadZoneProps> = ({ onFileSelected, isLoadin
           className="flex w-full flex-col items-center text-center"
           type="button"
         >
-          <span className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-cyan-400/15 text-3xl text-cyan-100 shadow-inner ring-1 ring-cyan-300/30">
+          <span className="mb-3 sm:mb-5 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl bg-cyan-400/15 text-2xl sm:text-3xl text-cyan-100 shadow-inner ring-1 ring-cyan-300/30">
             ◈
           </span>
-          <span className="text-xl font-bold text-white">Drop citra rambutan ke area ini</span>
-          <span className="mt-2 text-sm leading-6 text-slate-300">
+          <span className="text-lg sm:text-xl font-bold text-white">Drop citra rambutan ke area ini</span>
+          <span className="mt-1 sm:mt-2 text-xs sm:text-sm leading-5 sm:leading-6 text-slate-300">
             format gambar umum didukung untuk analisis warna dan klasifikasi
           </span>
-          <span className="mt-5 rounded-full bg-cyan-300 px-5 py-3 text-sm font-bold text-slate-950 shadow-lg shadow-cyan-500/25 transition hover:bg-emerald-300">
+          <span className="mt-4 sm:mt-5 rounded-full bg-cyan-300 px-4 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm font-bold text-slate-950 shadow-lg shadow-cyan-500/25 transition hover:bg-emerald-300">
             Pilih Citra
           </span>
         </button>

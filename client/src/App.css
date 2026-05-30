@@ -1,11 +1,23 @@
 /* Rambutan Classification App Styles */
 
+/* Dark Mode (Default) */
 .app-shell {
   background:
     radial-gradient(circle at 12% 8%, rgba(34, 211, 238, 0.22), transparent 28%),
     radial-gradient(circle at 88% 24%, rgba(16, 185, 129, 0.18), transparent 26%),
     radial-gradient(circle at 50% 86%, rgba(245, 158, 11, 0.16), transparent 28%),
     linear-gradient(180deg, #020617 0%, #07111f 46%, #0f172a 100%);
+  color: #e2e8f0;
+}
+
+/* Light Mode */
+[data-theme="light"] .app-shell {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(34, 211, 238, 0.12), transparent 28%),
+    radial-gradient(circle at 88% 24%, rgba(16, 185, 129, 0.08), transparent 26%),
+    radial-gradient(circle at 50% 86%, rgba(245, 158, 11, 0.08), transparent 28%),
+    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 46%, #e2e8f0 100%);
+  color: #1e293b;
 }
 
 .hero-surface {
@@ -27,6 +39,34 @@
     auto;
 }
 
+[data-theme="light"] .hero-surface {
+  background:
+    linear-gradient(rgba(248, 250, 252, 0.8), rgba(241, 245, 249, 0.9)),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(34, 211, 238, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at 18% 20%, rgba(34, 211, 238, 0.15), transparent 30%),
+    radial-gradient(circle at 78% 8%, rgba(16, 185, 129, 0.12), transparent 26%),
+    radial-gradient(circle at 68% 82%, rgba(251, 191, 36, 0.08), transparent 30%),
+    #f8fafc;
+  background-size:
+    auto,
+    46px 46px,
+    46px 46px,
+    auto,
+    auto,
+    auto,
+    auto;
+  color: #1e293b;
+}
+
+[data-theme="light"] .hero-surface h1 {
+  color: #0f172a;
+}
+
+[data-theme="light"] .hero-surface p {
+  color: #475569;
+}
+
 .glass-panel,
 .result-card,
 .image-panel {
@@ -38,6 +78,19 @@
     0 24px 80px rgba(0, 0, 0, 0.34),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(18px);
+}
+
+[data-theme="light"] .glass-panel,
+[data-theme="light"] .result-card,
+[data-theme="light"] .image-panel {
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background:
+    linear-gradient(180deg, rgba(248, 250, 252, 0.9), rgba(241, 245, 249, 0.85)),
+    rgba(241, 245, 249, 0.9);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  color: #1e293b;
 }
 
 .glass-panel,
@@ -59,6 +112,10 @@
   text-transform: uppercase;
 }
 
+[data-theme="light"] .section-kicker {
+  color: #0891b2;
+}
+
 .metric-pill {
   border: 1px solid rgba(34, 211, 238, 0.24);
   border-radius: 18px;
@@ -70,6 +127,14 @@
   backdrop-filter: blur(12px);
 }
 
+[data-theme="light"] .metric-pill {
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  background:
+    linear-gradient(180deg, rgba(34, 211, 238, 0.08), rgba(241, 245, 249, 0.5)),
+    rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
 .metric-pill span {
   display: block;
   color: rgba(165, 243, 252, 0.72);
@@ -79,11 +144,19 @@
   text-transform: uppercase;
 }
 
+[data-theme="light"] .metric-pill span {
+  color: #0891b2;
+}
+
 .metric-pill strong {
   display: block;
   margin-top: 0.35rem;
   color: white;
   font-size: 1rem;
+}
+
+[data-theme="light"] .metric-pill strong {
+  color: #0f172a;
 }
 
 .upload-zone {
@@ -104,6 +177,14 @@
     transform 180ms ease;
 }
 
+[data-theme="light"] .upload-zone {
+  border: 2px dashed rgba(34, 211, 238, 0.35);
+  background:
+    linear-gradient(180deg, rgba(240, 249, 255, 0.6), rgba(248, 250, 252, 0.8)),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(34, 211, 238, 0.04) 1px, transparent 1px);
+}
+
 .upload-zone:hover,
 .upload-zone-active {
   border-color: #34d399;
@@ -113,6 +194,14 @@
   transform: translateY(-1px);
 }
 
+[data-theme="light"] .upload-zone:hover,
+[data-theme="light"] .upload-zone-active {
+  border-color: #0891b2;
+  box-shadow:
+    0 18px 55px rgba(34, 211, 238, 0.08),
+    inset 0 0 0 1px rgba(34, 211, 238, 0.2);
+}
+
 .image-panel-header {
   display: flex;
   align-items: center;
@@ -120,6 +209,10 @@
   gap: 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 1.15rem 1.25rem;
+}
+
+[data-theme="light"] .image-panel-header {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
 }
 
 .image-frame {
@@ -142,6 +235,21 @@
   padding: 1.25rem;
 }
 
+[data-theme="light"] .image-frame {
+  background:
+    linear-gradient(45deg, rgba(34, 211, 238, 0.04) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(34, 211, 238, 0.04) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(34, 211, 238, 0.04) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(34, 211, 238, 0.04) 75%),
+    #f8fafc;
+  background-position:
+    0 0,
+    0 12px,
+    12px -12px,
+    -12px 0;
+  background-size: 24px 24px;
+}
+
 .feature-card {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 22px;
@@ -152,6 +260,17 @@
   box-shadow:
     0 14px 40px rgba(0, 0, 0, 0.22),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="light"] .feature-card {
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background:
+    linear-gradient(180deg, rgba(248, 250, 252, 0.95), rgba(241, 245, 249, 0.9)),
+    rgba(241, 245, 249, 0.95);
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  color: #1e293b;
 }
 
 .hue-bar {
@@ -255,10 +374,20 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+[data-theme="light"] .pipeline-card {
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.95), rgba(241, 245, 249, 0.9));
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
 .pipeline-card:hover {
   border-color: rgba(34, 211, 238, 0.4);
   transform: translateY(-4px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(34, 211, 238, 0.15);
+}
+
+[data-theme="light"] .pipeline-card:hover {
+  border-color: rgba(34, 211, 238, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 30px rgba(34, 211, 238, 0.1);
 }
 
 .pipeline-card::before {
@@ -339,6 +468,43 @@
   border-radius: 8px;
 }
 
+[data-theme="light"] .skeleton {
+  background: linear-gradient(90deg, rgba(226, 232, 240, 0.8) 25%, rgba(203, 213, 225, 0.8) 50%, rgba(226, 232, 240, 0.8) 75%);
+}
+
+/* Light mode text colors */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6 {
+  color: #0f172a;
+}
+
+[data-theme="light"] p,
+[data-theme="light"] span,
+[data-theme="light"] div {
+  color: #475569;
+}
+
+[data-theme="light"] .text-white {
+  color: #0f172a;
+}
+
+[data-theme="light"] .text-slate-300 {
+  color: #64748b;
+}
+
+[data-theme="light"] .text-slate-400 {
+  color: #78909c;
+}
+
+[data-theme="light"] .text-slate-200 {
+  color: #475569;
+}
+
+/* Responsive improvements for mobile */
 @media (max-width: 640px) {
   .metric-pill {
     padding: 0.75rem 0.6rem;
@@ -354,5 +520,99 @@
 
   .image-frame {
     min-height: 18rem;
+  }
+
+  .upload-zone {
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
+  }
+
+  .glass-panel {
+    border-radius: 20px;
+  }
+
+  .result-card {
+    border-radius: 20px;
+  }
+
+  .pipeline-card {
+    border-radius: 12px;
+  }
+
+  .feature-card {
+    border-radius: 16px;
+    padding: 1rem;
+  }
+
+  /* Better responsive text sizing */
+  h1 {
+    font-size: clamp(1.75rem, 5vw, 3rem);
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 4vw, 2rem);
+  }
+
+  h3 {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  p {
+    font-size: clamp(0.75rem, 2vw, 1rem);
+  }
+}
+
+/* Tablet responsive improvements */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .glass-panel {
+    border-radius: 24px;
+  }
+
+  .result-card {
+    border-radius: 24px;
+  }
+}
+
+/* Larger screens */
+@media (min-width: 1025px) {
+  .glass-panel {
+    border-radius: 28px;
+  }
+
+  .result-card {
+    border-radius: 28px;
+  }
+}
+
+/* Ensure images don't overflow on mobile */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Improve button touch targets on mobile */
+button {
+  min-height: 44px;
+}
+
+@media (max-width: 640px) {
+  button {
+    min-height: 40px;
+  }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+  .skeleton {
+    background: linear-gradient(90deg, rgba(30, 41, 59, 0.6) 25%, rgba(51, 65, 85, 0.6) 50%, rgba(30, 41, 59, 0.6) 75%);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

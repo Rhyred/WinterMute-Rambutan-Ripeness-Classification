@@ -21,32 +21,32 @@ const steps = [
 
 export const PipelineSteps: React.FC<PipelineStepsProps> = ({ images }) => {
   return (
-    <div className="my-8 rounded-3xl bg-slate-900/60 p-5 ring-1 ring-white/10 sm:p-8 animate-slide-up">
-      <div className="mb-6">
+    <div className="my-6 sm:my-8 rounded-2xl sm:rounded-3xl bg-slate-900/60 p-4 sm:p-5 ring-1 ring-white/10 sm:p-8 animate-slide-up">
+      <div className="mb-4 sm:mb-6">
         <p className="section-kicker">Proses</p>
-        <h3 className="text-2xl font-bold text-white">Pipeline Steps</h3>
-        <p className="mt-1 text-sm text-slate-400">6 tahap pemrosesan gambar sebelum klasifikasi</p>
+        <h3 className="text-xl sm:text-2xl font-bold text-white">Pipeline Steps</h3>
+        <p className="mt-0.5 sm:mt-1 text-xs sm:text-sm text-slate-400">6 tahap pemrosesan gambar sebelum klasifikasi</p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 stagger-children">
+      <div className="grid grid-cols-1 gap-2 sm:gap-3 sm:grid-cols-2 lg:grid-cols-3 stagger-children">
         {steps.map((step, idx) => (
-          <div key={step.key} className="pipeline-card animate-fade-in">
+          <div key={step.key} className="pipeline-card animate-fade-in overflow-hidden rounded-lg sm:rounded-2xl">
             <div className="relative">
               <img
                 src={images[step.key]}
                 alt={step.title}
-                className="w-full object-contain bg-slate-950/80 p-2 image-hover-zoom"
+                className="w-full object-contain bg-slate-950/80 p-1 sm:p-2 image-hover-zoom max-h-40 sm:max-h-48"
               />
-              <div className="absolute left-3 top-3 pipeline-number">
+              <div className="absolute left-2 top-2 sm:left-3 sm:top-3 pipeline-number text-xs sm:text-sm">
                 {idx + 1}
               </div>
             </div>
-            <div className="p-4">
+            <div className="p-3 sm:p-4 bg-gradient-to-b from-transparent to-slate-950/30">
               <div className="flex items-center gap-2">
                 <span className="text-lg">{step.icon}</span>
-                <p className="font-semibold text-white">{step.title}</p>
+                <p className="text-sm sm:text-base font-semibold text-white">{step.title}</p>
               </div>
-              <p className="mt-1 text-sm text-slate-400">{step.desc}</p>
+              <p className="mt-1 text-xs text-slate-400">{step.desc}</p>
             </div>
           </div>
         ))}
